@@ -5,7 +5,8 @@ LABEL Organization="qsnctf" Author="M0x1n <lqn@sierting.com>"
 
 COPY files /tmp/
 
-RUN mv /tmp/sources.list /etc/apt/sources.list \
+RUN sed -i 's/deb.debian.org/mirrors.nju.edu.cn/g' /etc/apt/sources.list \
+    && sed -i 's/security.debian.org/mirrors.nju.edu.cn/g' /etc/apt/sources.list \
     && apt-get update -y && apt-get install -y net-tools wget \
     && mv /tmp/flag.sh /flag.sh \
     && mv /tmp/docker-php-entrypoint /usr/local/bin/docker-php-entrypoint \
